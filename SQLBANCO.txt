@@ -1,0 +1,196 @@
+-- Sequence: public.entrada_id_entrada_seq
+
+-- DROP SEQUENCE public.entrada_id_entrada_seq;
+
+CREATE SEQUENCE public.entrada_id_entrada_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 71
+  CACHE 1;
+ALTER TABLE public.entrada_id_entrada_seq
+  OWNER TO postgres;
+
+
+
+
+-- Sequence: public.fornecedores_id_fornecedor_seq
+
+-- DROP SEQUENCE public.fornecedores_id_fornecedor_seq;
+
+CREATE SEQUENCE public.fornecedores_id_fornecedor_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 20
+  CACHE 1;
+ALTER TABLE public.fornecedores_id_fornecedor_seq
+  OWNER TO postgres;
+
+
+
+
+-- Sequence: public.produto_id_produto_seq
+
+-- DROP SEQUENCE public.produto_id_produto_seq;
+
+CREATE SEQUENCE public.produto_id_produto_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 6
+  CACHE 1;
+ALTER TABLE public.produto_id_produto_seq
+  OWNER TO postgres;
+
+
+
+
+
+-- Sequence: public.saida_id_saida_seq
+
+-- DROP SEQUENCE public.saida_id_saida_seq;
+
+CREATE SEQUENCE public.saida_id_saida_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 38
+  CACHE 1;
+ALTER TABLE public.saida_id_saida_seq
+  OWNER TO postgres;
+
+
+
+
+-- Sequence: public.usuario_id_usuario_seq
+
+-- DROP SEQUENCE public.usuario_id_usuario_seq;
+
+CREATE SEQUENCE public.usuario_id_usuario_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 18
+  CACHE 1;
+ALTER TABLE public.usuario_id_usuario_seq
+  OWNER TO postgres;
+
+
+
+
+-- Table: public.entrada
+
+-- DROP TABLE public.entrada;
+
+CREATE TABLE public.entrada
+(
+  id_entrada integer NOT NULL DEFAULT nextval('entrada_id_entrada_seq'::regclass),
+  cod_entradaproduto integer,
+  qtd_entrada integer,
+  desc_produto character varying(40)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.entrada
+  OWNER TO postgres;
+
+
+
+
+-- Table: public.fornecedores
+
+-- DROP TABLE public.fornecedores;
+
+CREATE TABLE public.fornecedores
+(
+  id_fornecedor integer NOT NULL DEFAULT nextval('fornecedores_id_fornecedor_seq'::regclass),
+  nome_fantasia character varying(30),
+  razao_social character varying(50),
+  endereco character varying(100),
+  numero integer,
+  complemento character varying(100),
+  bairro character varying(50),
+  cep integer,
+  cidade character varying(50),
+  uf_estado character varying(2),
+  pessoa character varying(1),
+  cnpj_fornecedor integer,
+  insc_estadual integer,
+  email character varying(50),
+  telefone integer
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.fornecedores
+  OWNER TO postgres;
+
+
+
+
+-- Table: public.produto
+
+-- DROP TABLE public.produto;
+
+CREATE TABLE public.produto
+(
+  id_produto integer NOT NULL DEFAULT nextval('produto_id_produto_seq'::regclass),
+  cod_produto integer,
+  desc_produto character varying(40),
+  marca character varying(30),
+  quantidade integer,
+  preco_compra double precision,
+  preco_venda double precision,
+  fornecedor character varying(100)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.produto
+  OWNER TO postgres;
+
+
+
+
+
+-- Table: public.saida
+
+-- DROP TABLE public.saida;
+
+CREATE TABLE public.saida
+(
+  id_saida integer NOT NULL DEFAULT nextval('saida_id_saida_seq'::regclass),
+  cod_saidaproduto integer,
+  qtd_saida integer,
+  desc_produto character varying(40),
+  filial character varying(40)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.saida
+  OWNER TO postgres;
+
+
+
+
+
+-- Table: public.usuario
+
+-- DROP TABLE public.usuario;
+
+CREATE TABLE public.usuario
+(
+  id_usuario integer NOT NULL DEFAULT nextval('usuario_id_usuario_seq'::regclass),
+  nome character varying(30),
+  senha integer,
+  nivel character varying(20)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.usuario
+  OWNER TO postgres;
+
